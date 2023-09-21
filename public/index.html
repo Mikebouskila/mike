@@ -1,654 +1,175 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REST API Documentation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
-        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="style.css" />
-    <title>Toys API Docs</title>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
-        crossorigin="anonymous"></script>
+        header {
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        h1 {
+            font-size: 2rem;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        h3 {
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        .endpoint {
+            margin-top: 1rem;
+            border: 1px solid #ccc;
+            padding: 1rem;
+            background-color: #f9f9f9;
+        }
+
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+
+        pre {
+            margin: 0;
+            padding: 0;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: #777;
+        }
+    </style>
 </head>
-
 <body>
+    <header>
+        <h1>REST API Documentation</h1>
+        <p>Welcome to the documentation for the REST API of our application. Below, you will find detailed information about available endpoints and how to use them.</p>
+    </header>
 
-    <!-- /toys -->
     <div class="container">
-        <div class="header">
-            <img src="./assets/nareeta-martin-amNntGoNvPA-unsplash.jpg" alt="" />
-            <h1 class="display-4 text-center fw-bold">Toys API Documentation</h1>
-            <h2 class="text-center fw-bold">Endpoint: /toys</h2>
-        </div>
-        <div class="accordion" id="accordionExample">
-            <!--GET /toys section -->
+        <section id="toys-api">
+            <h2>Toy API</h2>
+            <p>The Toy API provides endpoints for managing toy-related data.</p>
 
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                        <h2 class="mb-0">
-                            <span class="text-success">GET</span> Request - Get All Toys "/"
-                        </h2>
-                    </button>
-                </h2>
-                <div id="collapseOne" class="accordion-collapse show">
-                    <div class="accordion-body">
-                        <h5 class="pt-2 pb-2">
-                            <strong>Description:</strong> Returns list of toys with
-                            <span class="fw-bold">optional</span>
-                            query parameters.
-                        </h5>
-                        <table class="table table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Query Parameter</th>
-                                    <th>Description</th>
-                                    <th>Default</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <a target="_blank" href="/toys?limit=3">limit</a>
-                                    </td>
-                                    <td>The number of objects to return in the response.</td>
-                                    <td>10</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a target="_blank" href="/toys?limit=2&page=1">page</a>
-                                    </td>
-                                    <td>Page number for pagination.</td>
-                                    <td>0</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a target="_blank" href="/toys?sort=price">sort</a>
-                                    </td>
-                                    <td>Sort order from big to small.</td>
-                                    <td>_id</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a target="_blank" href="/toys?reverse=yes">reverse</a>
-                                    </td>
-                                    <td>Sort order from small to big.</td>
-                                    <td>From big to small</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a target="_blank" href="/toys?s=toys">s</a>
-                                    </td>
-                                    <td>Search by name and info.</td>
-                                    <td>None</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a target="_blank" href="/toys?cat=dolls">cat</a>
-                                    </td>
-                                    <td>Search by category</td>
-                                    <td>None</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <h5>
-                            Respone Example: <a target="_blank" href="/toys">"/toys"</a>
-                        </h5>
-                        <pre>
-[
+            <article class="endpoint">
+                <h3>Get All Toys</h3>
+                <p><strong>Endpoint:</strong> <code>GET /toys</code></p>
+                <p><strong>Description:</strong> Retrieves a list of all toys.</p>
+                <p><strong>Request:</strong></p>
+                <pre><code>
+Method: GET
+URL: /toys
+Query Parameters:
+- parPeg (optional): Number of items per page (default: 10).
+- page (optional): Page number (default: 1).
+- sort (optional): Sorting field (default: '_id').
+- reverse (optional): reverse sorting order (true: reverse = yes).
+                </code></pre>
+                <p><strong>Response:</strong></p>
+                <pre><code>
+Status: 200 OK
+Body: [Array of toy objects]
+                </code></pre>
+                <p><strong>Example:</strong></p>
+                <pre><code>
+GET /toys?page=2&parPeg=10&sort=name
+
+Response:
+Status: 200 OK
+Body: [
     {
-        "_id": "...",
-        "name": "Action Figure",
-        "info": "Poseable action figure with accessories.",
+        "_id": "1",
+        "name": "Toy 1",
         "category": "Action Figures",
-        "imgUrl": "action_figure.png",
-        "price": 15,
-        "userId": "...",
-        "createdAt": "...",
-        "updatedAt": "..."",
+        "price": 19.99
     },
     {
-        "_id": "...",
-        "name": "Building Blocks",
-        "info": "Set of colorful building blocks for creative play.",
-        "category": "Building Toys",
-        "imgUrl": "building_blocks.png",
-        "price": 20,
-        "userId": "...",
-        "createdAt": "...",
-        "updatedAt": "..."",
-    },
-    ...
-]                
-                        </pre>
-                    </div>
-                </div>
-            </div>
-
-            <!--GET /toys/single/:id section -->
-
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-                        <h2 class="mb-0">
-                            <span class="text-success">GET</span> Request - Get single Toy
-                            "/single/:id"
-                        </h2>
-                    </button>
-                </h2>
-                <div id="collapseFive" class="accordion-collapse collapse">
-                    <div class="accordion-body">
-                        <h5 class="pt-2 pb-2">
-                            <strong>Description:</strong> Returns a single toy by its ID
-                        </h5>
-                        <h5>
-                            Respone Example:
-                            <a target="_blank" href="/toys/single/64ec5d365f512400db233c46">"/toys/single/:id"</a>
-                        </h5>
-                        <pre>
-{
-    "_id": "...",
-    "name": "Action Figure",
-    "info": "Poseable action figure with accessories.",
-    "category": "Action Figures",
-    "imgUrl": "action_figure.png",
-    "price": 15,
-    "userId": "...",
-    "createdAt": "...",
-    "updatedAt": "..."",
-},              
-                                    </pre>
-                    </div>
-                </div>
-            </div>
-
-            <!--GET /toys/price?min&max section -->
-
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
-                        <h2 class="mb-0">
-                            <span class="text-success">GET</span> Request - Get Toys min &
-                            max "/price"
-                        </h2>
-                    </button>
-                </h2>
-                <div id="collapseSix" class="accordion-collapse collapse">
-                    <div class="accordion-body">
-                        <h5 class="pt-2 pb-2">
-                            <strong>Description:</strong> Returns a list of toys based on
-                            queries <span class="fw-bold">optional</span>
-                            minimum and maximum query parameters
-                        </h5>
-                        <table class="table table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Query Parameter</th>
-                                    <th>Description</th>
-                                    <th>Default</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <a target="_blank" href="/toys/price?min=10">min</a>
-                                    </td>
-                                    <td>Returns all toys with a bigger price</td>
-                                    <td>0</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a target="_blank" href="/toys/price?max=25">max</a>
-                                    </td>
-                                    <td>Returns all toys with a smaller price</td>
-                                    <td>None</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <a target="_blank" href="/toys/price?reverse=yes">reverse</a>
-                                    </td>
-                                    <td>Returns the Toys with sort from small to big</td>
-                                    <td>From big to small</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <h5>
-                            Respone Example of GET:
-                            <a target="_blank"
-                                href="/toys/price?reverse=yes&max=18">"/toys/price?reverse=yes&max=18"</a>
-                        </h5>
-                        <pre>
-[
-    {
-        "_id": "...",
-        "name": "Doll",
-        "info": "Poseable doll with changeable outfits.",
-        "category": "Dolls & Accessories",
-        "imgUrl": "doll.png",
-        "price": 18,
-        "userId": "...",
-        "createdAt": "...",
-        "updatedAt": "...",
-    },
-    {
-        "_id": "...",
-        "name": "Toy Tea Set",
-        "info": "Pretend play tea set for hosting imaginary tea parties.",
-        "category": "Pretend Play",
-        "imgUrl": "toy_tea_set.png",
-        "price": 15,
-        "userId": "...",
-        "createdAt": "...",
-        "updatedAt": "...",
-    },
-    {
-        "_id": "...",
-        "name": "Plush Toy",
-        "info": "Soft and cuddly plush toy for hugging.",
-        "category": "Stuffed Animals",
-        "imgUrl": "plush_toy.png",
-        "price": 12,
-        "userId": "...",
-        "createdAt": "...",
-        "updatedAt": "...",
-    },
-    {
-        "_id": "...",
-        "name": "Stuffed Animal",
-        "info": "Soft and cuddly stuffed animal for comforting play.",
-        "category": "Stuffed Animals",
-        "imgUrl": "stuffed_animal.png",
-        "price": 10,
-        "userId": "...",
-        "createdAt": "...",
-        "updatedAt": "...",
+        "_id": "2",
+        "name": "Toy 2",
+        "category": "Dolls",
+        "price": 14.99
     }
-] 
-                                    </pre>
-                    </div>
-                </div>
-            </div>
+]
+                </code></pre>
+            </article>
 
-            <!--GET /toys/count -->
+            <!-- Add more endpoints for Toy API as needed -->
+        </section>
 
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
-                        <h2 class="mb-0">
-                            <span class="text-success">GET</span> Request - Get Toys count
-                            "/count"
-                        </h2>
-                    </button>
-                </h2>
-                <div id="collapseSeven" class="accordion-collapse collapse">
-                    <div class="accordion-body">
-                        <h5 class="pt-2 pb-2">
-                            <strong>Description:</strong> Returns the number of documents
-                            <span class="fw-bold">optional</span>
-                            limit query parameter.
-                        </h5>
-                        <table class="table table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Query Parameter</th>
-                                    <th>Description</th>
-                                    <th>Default</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>
-                                        <a target="_blank" href="/toys/count?limit=10">count</a>
-                                    </td>
-                                    <td>
-                                        Returns the number of Toys and pages for a specific limit
-                                    </td>
-                                    <td>5</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <h5>
-                            Respone Example of GET: <a target="_blank" href="/toys/count">"/toys/count"</a>
-                        </h5>
-                        <pre>
-{
-    "count": 25,
-    "limit": 5
-}
-</pre>
-                    </div>
-                </div>
-            </div>
+        <section id="users-api">
+            <h2>User API</h2>
+            <p>The User API provides endpoints for managing user-related data.</p>
 
-            <!--POST /toys section -->
+            <article class="endpoint">
+                <h3>Get All Users</h3>
+                <p><strong>Endpoint:</strong> <code>GET /users</code></p>
+                <p><strong>Description:</strong> Retrieves a list of all users.</p>
+                <p><strong>Request:</strong></p>
+                <pre><code>
+Method: GET
+URL: /users
+                </code></pre>
+                <p><strong>Response:</strong></p>
+                <pre><code>
+Status: 200 OK
+Body: [Array of user objects]
+                </code></pre>
+                <p><strong>Example:</strong></p>
+                <pre><code>
+GET /users
 
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                        <div class="wrapper d-flex justify-content-between w-100 align-items-center me-2">
-                            <h3 class="mb-0">
-                                <span class="text-warning">POST</span> Request - Add a New Toy
-                                "/"
-                            </h3>
+Response:
+Status: 200 OK
+Body: [
+    {
+        "_id": "101",
+        "name": "John Doe",
+        "email": "johndoe@example.com"
+    },
+    {
+        "_id": "102",
+        "name": "Jane Smith",
+        "email": "janesmith@example.com"
+    }
+]
+                </code></pre>
+            </article>
 
-                            <div class="hover-text">
-                                <i class="fa-solid fa-key fs-3 text-warning"></i>
-                                <span class="tooltip-text right" id="">Token is required</span>
-                            </div>
-                        </div>
-                    </button>
-                </h2>
-                <div id="collapseTwo" class="accordion-collapse collapse">
-                    <div class="accordion-body">
-                        <h5 class="pt-2 pb-2">
-                            <strong>Description:</strong> Add a new toy.
-                        </h5>
-                        <p>
-                            <strong>Request Body:</strong> Toy data in the following format:
-                        </p>
-                        <pre>
-{
-    "name": string (2-50 chars),
-    "info": string (2-400 chars),
-    "category": string (2-50 chars),
-    "price": number (0-99999),
-    "imgUrl": string (2-400 chars) <span class="fw-bold">optional</span>
-}
-                        </pre>
-                        <h5>Respone Example of POST: <a target="_blank" href="/toys">"/toys"</a></h5>
-                        <pre>
-{
-    "_id": "...",
-    "name": "Action Figure",
-    "info": "Poseable action figure with accessories.",
-    "category": "Action Figures",
-    "imgUrl": "action_figure.png",
-    "price": 15,
-    "userId": "...",
-    "createdAt": "...",
-    "updatedAt": "..."",
-}
-                        </pre>
-                    </div>
-                </div>
-            </div>
-
-            <!--PUT /toys/:id section -->
-
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed d-flex justify-content-between" type="button"
-                        data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false"
-                        aria-controls="collapseThree">
-                        <div
-                            class="wrapper d-flex justify-content-between w-100 align-items-center me-2 d-flex justify-content-between w-100 align-items-center me-2">
-                            <h3 class="mb-0">
-                                <span class="text-primary">PUT</span> Request - Update a Toy
-                                "/:id"
-                            </h3>
-                            <div class="hover-text">
-                                <i class="fa-solid fa-key fs-3 text-warning"></i>
-                                <span class="tooltip-text right" id="">Token is required</span>
-                            </div>
-                        </div>
-                    </button>
-                </h2>
-                <div id="collapseThree" class="accordion-collapse collapse">
-                    <div class="accordion-body">
-                        <h5 class="pt-2 pb-2">
-                            <strong>Description:</strong> Update an existing toy by it's id.
-                        </h5>
-                        <table class="table table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Params</th>
-                                    <th>Description</th>
-                                    <th>Required</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>id</td>
-                                    <td>The document's id</td>
-                                    <td>True</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <p>
-                            <strong>Request Body:</strong> Toy data in the following format:
-                        </p>
-                        <pre>
-{
-    "name": string (2-50 chars),
-    "info": string (2-400 chars),
-    "category": string (2-50 chars),
-    "price": number (0-99999),
-    "imgUrl": string (2-400 chars) <span class="fw-bold">optional</span>
-}
-                        </pre>
-                        <h5>
-                            Respone Example of PUT:
-                            <a target="_blank" href="/toys/<id>">"/toys/:id"</a>
-                        </h5>
-                        <pre>
-{
-    "acknowledged": true,
-    "modifiedCount": 1,
-    "upsertedId": null,
-    "upsertedCount": 0,
-    "matchedCount": 1
-}
-                        </pre>
-                    </div>
-                </div>
-            </div>
-
-            <!--DELETE /toys/:id section -->
-
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-                        <div
-                            class="wrapper d-flex justify-content-between w-100 align-items-center me-2 d-flex justify-content-between w-100 align-items-center me-2">
-                            <h3 class="mb-0">
-                                <span class="text-danger">DELETE</span> Request - Delete a Toy
-                                "/:id"
-                            </h3>
-                            <div class="hover-text">
-                                <i class="fa-solid fa-key fs-3 text-warning"></i>
-                                <span class="tooltip-text right" id="">Token is required</span>
-                            </div>
-                        </div>
-                    </button>
-                </h2>
-                <div id="collapseFour" class="accordion-collapse collapse">
-                    <div class="accordion-body">
-                        <h5 class="pt-2 pb-2">
-                            <strong>Description:</strong> Delete an existing toy by it's id.
-                        </h5>
-                        <table class="table table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Params</th>
-                                    <th>Description</th>
-                                    <th>Required</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>id</td>
-                                    <td>The document's id</td>
-                                    <td>True</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <h5>
-                            Respone Example of DELETE:
-                            <a target="_blank" href="/toys/<id>">/toys/:id</a>
-                        </h5>
-
-                        <pre>
-{
-    "acknowledged": true,
-    "deletedCount": 1
-}
-                        </pre>
-                    </div>
-                </div>
-            </div>
-        </div>
+            <!-- Add more endpoints for User API as needed -->
+        </section>
     </div>
 
-    <!-- /users -->
-
-    <div class="container mb-5 pb-5">
-        <div class="header">
-            <h2 class="text-center fw-bold">Endpoint: /users</h2>
-        </div>
-
-        <div class="accordion" id="accordionExample">
-            <!-- user signup -->
-
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseUserSignup" aria-expanded="false" aria-controls="collapseUserSignup">
-                        <div class="wrapper d-flex justify-content-between w-100 align-items-center me-2">
-                            <h3 class="mb-0">
-                                <span class="text-warning">POST</span> Request - user signup
-                                "/"
-                            </h3>
-                        </div>
-                    </button>
-                </h2>
-                <div id="collapseUserSignup" class="accordion-collapse collapse">
-                    <div class="accordion-body">
-                        <h5 class="pt-2 pb-2">
-                            <strong>Description:</strong> Add a new user.
-                        </h5>
-                        <p>
-                            <strong>Request Body:</strong> User data in the following
-                            format:
-                        </p>
-                        <pre>
-{
-    "name": string (2-150 chars),
-    "email": string (2-150 chars),
-    "password": string (2-16 chars),
-}
-                                </pre>
-                        <h5>Respone Example of POST: <a href="/users">"/users"</a></h5>
-                        <pre>
-{
-    "_id": "...",
-    "name": "netanel",
-    "email": "123@gmail.com",
-    "password": "***",
-    "role": "user",
-    "createdAt": "...",
-    "updatedAt": "...",
-}
-                                </pre>
-                    </div>
-                </div>
-            </div>
-
-            <!-- user Login -->
-
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapseLogin" aria-expanded="false" aria-controls="collapseLogin">
-                        <div class="wrapper d-flex justify-content-between w-100 align-items-center me-2">
-                            <h3 class="mb-0">
-                                <span class="text-warning">POST</span> Request - user login
-                                "/login"
-                            </h3>
-                        </div>
-                    </button>
-                </h2>
-                <div id="collapseLogin" class="accordion-collapse collapse">
-                    <div class="accordion-body">
-                        <h5 class="pt-2 pb-2">
-                            <strong>Description:</strong> Register to an existing user.
-                        </h5>
-                        <p>
-                            <strong>Request Body:</strong> User data in the following
-                            format:
-                        </p>
-                        <pre>
-{
-    "email": string (2-150 chars),
-    "password": string (2-16 chars),
-}
-                        </pre>
-                        <h5>
-                            Respone Example of POST:
-                            <a target="_blank" href="/users/login">"/users/login"</a>
-                        </h5>
-                        <pre>
-{
-    "token": "x4...23zx"
-}
-                                            </pre>
-                    </div>
-                </div>
-            </div>
-
-            <!-- user myInfo -->
-
-            <div class="accordion-item">
-                <h2 class="accordion-header">
-                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapsemyInfo" aria-expanded="false" aria-controls="collapsemyInfo">
-                        <div class="wrapper d-flex justify-content-between w-100 align-items-center me-2">
-                            <h3 class="mb-0">
-                                <span class="text-success">GET</span> Request - user info
-                                "/myInfo"
-                            </h3>
-                            <div class="hover-text">
-                                <i class="fa-solid fa-key fs-3 text-warning"></i>
-                                <span class="tooltip-text right" id="">Token is required</span>
-                            </div>
-                        </div>
-                    </button>
-                </h2>
-                <div id="collapsemyInfo" class="accordion-collapse collapse">
-                    <div class="accordion-body">
-                        <h5 class="pt-2 pb-2">
-                            <strong>Description:</strong> Get user info from token data.
-                        </h5>
-                        <h5>
-                            Respone Example of GET:
-                            <a target="_blank" href="/users/login">"/users/login"</a>
-                        </h5>
-                        <pre>
-{
-    "_id": "...",
-    "name": "name",
-    "email": "name@gmail.com",
-    "role": "user",
-    "createdAt": "...",
-    "updatedAt": "...",
-}
-                            </pre>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <footer>
+        <p>Generated with care by Your Company</p>
+    </footer>
 </body>
-
 </html>

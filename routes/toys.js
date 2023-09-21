@@ -5,16 +5,20 @@ const router = express.Router();
 
 // -> localhost:3001/toys?page=3&parPeg=12&sort=price
 router.get("/", async(req,res) => {
-    const parPeg = req.query.parPeg ? Math.min(req.query.parPeg, 5) : 3;
+  const reverse = req.query.reverse == "yes" ? 1 : -1;
+
+    const parPeg = req.query.parPeg ? Math.min(req.query.parPeg) : 10;
     const page = req.query.page ? req.query.page -1 : 0;
     const sort = req.query.sort || "_id";
+    
 
     try{
       let data = await ToysModel
       .find({})
       .limit(parPeg)
       .skip(page*parPeg)
-      .sort({[sort]:1})
+      .sort({ [sort]: reverse })
+
 
 
       res.json(data);
